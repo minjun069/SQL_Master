@@ -72,39 +72,39 @@
 * 데이터를 입력, 수정, 삭제 하는 방법을 익히고 활용할 수 있다. 
 ~~~
 
-LIKE '%'-무엇이든 '_'-한글
-IN('A','B','C')
-BETWEEN 1 AND 3
+LIKE '%'-무엇이든 '_'-한글자    
+IN('A','B','C')  
+BETWEEN 1 AND 3  
 LIMIT 시작, 개수
 
 
-AUTO_INCREMENT: 자동으로 숫자를 입력해준다는 의미
-ex)
-CREATE TABLE TB1 (
-COL1 INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-~~)
+AUTO_INCREMENT: 자동으로 숫자를 입력해준다는 의미  
+ex)  
+CREATE TABLE TB1 (  
+COL1 INT AUTO_INCREMENT NOT NULL PRIMARY KEY,  
+~~)  
 
--SELECT LAST_INSERT_ID(); -- 자동 증가로 입력된 마지막 숫자
--ALTER TABLE TB1 AUTO_INCREMENT=100; -- 자동 증가로 입력되는 다음 값을 100으로 설정
+-SELECT LAST_INSERT_ID(); -- 자동 증가로 입력된 마지막 숫자  
+-ALTER TABLE TB1 AUTO_INCREMENT=100; -- 자동 증가로 입력되는 다음 값을 100으로 설정  
 -SET @@auto_increment_increment = 3; -- 자동 증가 시 증가되는 
 
 
-INSERT INTO TB1 [(COL1, COL2, ...)] VALUES (VAL1, VAL2,...)
+INSERT INTO TB1 [(COL1, COL2, ...)] VALUES (VAL1, VAL2,...)  
 INSERT INTO TB1 VALUES (VAL1, VAL2,...) (VAL1, VAL2, ...) (VAL1, VAL2, ...) ~~
 
-INSERT INTO TB1
+INSERT INTO TB1  
   SELECT COL1, COL2 FROM TB2; -- TB2의 데이터를 한번에 TB1에 입력
 
   
 DESC TB1; -- Describe의 약자로 테이블 구조를 출력
 
-UPDATE TB1
+UPDATE TB1  
   SET COL1 = VAL1 -- WHERE 문이 없을 경우, 모든 행의 값 변경
 
 
-대용량 테이블 삭제 방법
-1) DELETE FROM TB1: 빈 테이블을 남김, 오래 걸림
-2) TRUNCATE TABLE TB1: 빈테이블을 남김, 빠름
+대용량 테이블 삭제 방법  
+1) DELETE FROM TB1: 빈 테이블을 남김, 오래 걸림  
+2) TRUNCATE TABLE TB1: 빈테이블을 남김, 빠름  
 3) DROP TABLE TB1: 테이블 자체를 삭제, 빠름
 
 
