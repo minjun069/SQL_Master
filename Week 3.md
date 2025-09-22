@@ -1,4 +1,4 @@
-<img width="1064" height="830" alt="image" src="https://github.com/user-attachments/assets/2f6c2059-0ed8-41dd-929c-11684bcb0032" /># SQL_MASTER 3주차 정규 과제 
+# SQL_MASTER 3주차 정규 과제 
 
 ## Week 3 : SQL 기본 문법
 
