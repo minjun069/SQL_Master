@@ -1,4 +1,4 @@
-# SQL_MASTER 3주차 정규 과제 
+<img width="1064" height="830" alt="image" src="https://github.com/user-attachments/assets/2f6c2059-0ed8-41dd-929c-11684bcb0032" /># SQL_MASTER 3주차 정규 과제 
 
 ## Week 3 : SQL 기본 문법
 
@@ -117,8 +117,54 @@ UPDATE TB1
 * SQL에서 일반 프로그래밍 기능을 구현할 수 있다. 
 ~~~
 
-<!-- 새롭게 배운 내용을 자유롭게 정리해주세요.-->
+● 데이터 형식
+-정수형  
+<img width="590" height="194" alt="image" src="https://github.com/user-attachments/assets/16893d6b-34ad-4367-8dd0-da8d135330d5" />
 
+-문자형  
+<img width="886" height="116" alt="image" src="https://github.com/user-attachments/assets/b6db250e-7bd4-45c0-9b40-c7e16bb6ae1c" />  
+<img width="886" height="150" alt="image" src="https://github.com/user-attachments/assets/81102318-bc71-4926-9d3d-f3351795cf34" />
+TEXT 형식은 긴 스크립트를, BLOB는 사진이나 동영상을 저장할 때 사용
+
+-실수형  
+<img width="890" height="106" alt="image" src="https://github.com/user-attachments/assets/98f34c7e-65d6-40f8-8b5d-ed3398dad299" />
+
+-날짜형
+<img width="894" height="158" alt="image" src="https://github.com/user-attachments/assets/416d418a-b314-471c-9bc4-7c0083c8caf3" />
+
+
+● 데이터 형 변환  
+-명시적 변환  
+<img width="384" height="80" alt="image" src="https://github.com/user-attachments/assets/e83dec36-e61d-43aa-9576-bd0befc8d779" />
+
+-암묵적 변환  
+<img width="810" height="82" alt="image" src="https://github.com/user-attachments/assets/e9b2cbd7-a282-43b4-a476-35f5c2b4481d" />  
+연산 시 시스템 내에서 자동으로 변환 후 연산하는 경우
+
+● 변수 사용
+<img width="554" height="88" alt="image" src="https://github.com/user-attachments/assets/f4e11890-1c04-4cff-8255-52f814b00352" />  
+변수 사용시 MYSQL 종료하면 재사용할 수 없음
+
+<img width="818" height="110" alt="image" src="https://github.com/user-attachments/assets/4d8b3d1d-e927-450b-931f-15cf50177ea5" />  
+LIMIT에는 직접 변수 사용이 안 되지만, PREPARE-EXCUTE 문으로 우회 사용 가능
+
+
+● 스토어드 프로시저  
+코딩 시 SQL문은 두 문장 이상 사용 시 항상 BEGIN ~ END로 묶어준다.
+
+-IF~ELSE문  
+<img width="194" height="116" alt="image" src="https://github.com/user-attachments/assets/be10d68c-ea8f-4935-97e6-15b9f4fa6cb6" />
+
+-CASE문  
+<img width="234" height="356" alt="image" src="https://github.com/user-attachments/assets/f378412f-c9a8-4930-8257-705afb4f8e5e" />
+
+-WHILE문  
+<img width="224" height="104" alt="image" src="https://github.com/user-attachments/assets/f0a73865-5868-48ed-a69d-554dd1fa7be7" />
+
+● 동적 SQL  
+-PREPARE & EXCUTE  
+사용 예시  
+<img width="808" height="194" alt="image" src="https://github.com/user-attachments/assets/4fbc7b65-3e12-42ea-9d97-ad3f618d7c0c" />
 
 
 <br>
@@ -163,9 +209,30 @@ name열에 따라 정렬하여 조회하는 쿼리이다.
 https://school.programmers.co.kr/learn/courses/30/lessons/131534
 
 > 프로그래머스 : 상품을 구매한 회원 비율 구하기 (Lv 5)
-
-<!-- 이 주석을 지우고 문제의 코드와 코드에 대한 설명과 '정답입니다' 문구를 캡쳐해서 올려주세요 -->
-
+>
+~~~sql
+SELECT 
+    YEAR(SALES_DATE) AS YEAR, 
+    MONTH(SALES_DATE) AS MONTH, 
+    COUNT(DISTINCT USER_ID) AS PURCHASED_USERS,
+        ROUND(
+        COUNT(DISTINCT USER_ID) /
+        (SELECT COUNT(DISTINCT USER_ID) 
+         FROM USER_INFO 
+         WHERE JOINED BETWEEN '2021-01-01' AND '2021-12-31'),
+        1
+    ) AS PUCHASED_RATIO
+    
+FROM ONLINE_SALE
+WHERE USER_ID IN (
+    SELECT USER_ID 
+    FROM USER_INFO 
+    WHERE JOINED 
+    BETWEEN '2021-01-01' AND '2021-12-31'
+)
+GROUP BY YEAR, MONTH
+ORDER BY YEAR, MONTH
+~~~
 
 
 # 참고자료
